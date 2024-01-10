@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9c5a8003-1c58-4207-b843-85f2355aaf4a",
+		"_postman_id": "1b1cdc3d-9250-4d97-99ee-83a4c8a9e4df",
 		"name": "udacity-c2-basic-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32076246"
 	},
 	"item": [
 		{
@@ -10,13 +11,57 @@
 			"item": [
 				{
 					"name": "/cars all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.json()).to.deep.equal(",
+									"        [",
+									"            {",
+									"                \"make\": \"tesla\",",
+									"                \"type\": \"sedan\",",
+									"                \"model\": \"roadster\",",
+									"                \"cost\": 33,",
+									"                \"id\": 0",
+									"            },",
+									"            {",
+									"                \"make\": \"tesla\",",
+									"                \"type\": \"suv\",",
+									"                \"model\": \"model 3\",",
+									"                \"cost\": 48,",
+									"                \"id\": 1",
+									"            },",
+									"            {",
+									"                \"make\": \"toyota\",",
+									"                \"type\": \"sedan\",",
+									"                \"model\": \"prius\",",
+									"                \"cost\": 22,",
+									"                \"id\": 2",
+									"            },",
+									"            {",
+									"                \"make\": \"honda\",",
+									"                \"type\": \"sedan\",",
+									"                \"model\": \"civic\",",
+									"                \"cost\": 22,",
+									"                \"id\": 3",
+									"            }",
+									"        ]",
+									"    );",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8082/cars/",
 							"protocol": "http",
@@ -34,13 +79,36 @@
 				},
 				{
 					"name": "/cars filter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.json()).to.deep.equal(",
+									"        [",
+									"            {",
+									"                \"make\": \"toyota\",",
+									"                \"type\": \"sedan\",",
+									"                \"model\": \"prius\",",
+									"                \"cost\": 22,",
+									"                \"id\": 2",
+									"            }",
+									"        ]",
+									"    );",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8082/cars/?make=toyota",
 							"protocol": "http",
@@ -64,6 +132,31 @@
 				},
 				{
 					"name": "/cars by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.json()).to.deep.equal(",
+									"        {",
+									"            \"make\": \"toyota\",",
+									"            \"type\": \"sedan\",",
+									"            \"model\": \"prius\",",
+									"            \"cost\": 22,",
+									"            \"id\": 2",
+									"        }",
+									"    );",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -74,10 +167,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8082/cars/2",
 							"protocol": "http",
@@ -95,6 +184,31 @@
 				},
 				{
 					"name": "/cars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Body matches json\", function () {",
+									"    pm.expect(pm.response.json()).to.deep.equal(",
+									"        {",
+									"            \"make\": \"ford\",",
+									"            \"type\": \"sedan\",",
+									"            \"model\": \"focus\",",
+									"            \"cost\": 12,",
+									"            \"id\": 9",
+									"        }",
+									"    );",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -131,7 +245,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9b4015b7-faf5-4924-8661-7728ba94e410",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -148,10 +261,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/",
 					"protocol": "http",
@@ -172,7 +281,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "277a3edb-b69d-4dcd-9b13-00d00faaca25",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -190,10 +298,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/persons/:name",
 					"protocol": "http",
@@ -221,7 +325,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7df7eec7-78b4-46f4-b2f5-2a7b994747e9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -242,10 +345,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/persons?name=george",
 					"protocol": "http",
@@ -272,7 +371,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "23433ca1-6ffc-4149-9e3c-97514d889ac5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -321,7 +419,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "444e71e3-ae8c-469a-9da1-22aa3ee0792d",
 						"exec": [
 							"pm.test(\"Status code is 400\", function () {",
 							"    pm.response.to.have.status(400);",
@@ -334,10 +431,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/persons/",
 					"protocol": "http",
@@ -358,7 +451,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6f442aeb-7c6b-401b-a76d-03a2c7b2cca9",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -368,7 +460,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "fae73fa3-4d3b-4528-a1af-a150ef18a902",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -378,7 +469,6 @@
 	],
 	"variable": [
 		{
-			"id": "0db39ab1-774e-4108-8078-7a4d7df27657",
 			"key": "endpoint",
 			"value": "http://localhost:8082",
 			"type": "string"
